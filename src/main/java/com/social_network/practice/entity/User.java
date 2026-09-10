@@ -1,13 +1,14 @@
 package com.social_network.practice.entity;
 
+import jakarta.persistence.Entity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-@Component
+@Entity
 public class User {
 
-    private long id;
+    private long userId;
 
     private String name;
     private ArrayList<Post> posts;
@@ -23,7 +24,7 @@ public class User {
     }
 
     public long getId() {
-        return id;
+        return userId;
     }
 
     public String getName() {

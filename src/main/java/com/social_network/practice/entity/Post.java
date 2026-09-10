@@ -1,15 +1,16 @@
 package com.social_network.practice.entity;
 
+import jakarta.persistence.Entity;
 import org.springframework.stereotype.Component;
 
-@Component
+@Entity
 public class Post {
 
-    private long post_id;
+    private long postId;
 
     private String content;
 
-    private long user_id;
+    private long userId;
 
     public Post(){}
 
@@ -27,10 +28,10 @@ public class Post {
     }
 
     public long getUser_id() {
-        return user_id;
+        return userId;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setUser_id(long userId) {
+        this.userId = userId;
     }
 }
