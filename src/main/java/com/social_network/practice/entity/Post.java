@@ -8,11 +8,13 @@ public class Post {
     private long post_id;
 
     private String content;
+
     private long user_id;
 
     public Post(){}
 
     public Post(String content){
+        if(content.isEmpty()) throw new IllegalArgumentException();
         this.content = content;
     }
 

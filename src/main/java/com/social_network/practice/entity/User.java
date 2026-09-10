@@ -16,6 +16,7 @@ public class User {
     public User() {}
 
     public User(String name) {
+        if(name.isEmpty()) throw new IllegalArgumentException();
         this.name = name;
         this.posts = new ArrayList<>();
         this.comments = new ArrayList<>();
