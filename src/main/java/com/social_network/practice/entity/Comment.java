@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class Comment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long commentId;
 
     @Column(name = "content")
