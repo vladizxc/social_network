@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class Post {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long postId;
 
     @Column(name="content")
