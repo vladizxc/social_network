@@ -1,9 +1,6 @@
 package com.social_network.practice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -21,16 +18,24 @@ public class Comment {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    private long userId;
+    @ManyToOne
+    @JoinColumn(name = "fk_user_id")
+    private User user;
 
-    private long postId;
+    @ManyToOne
+    @JoinColumn(name = "fk_post_id")
+    private Post post;
 
     public Comment(){}
 
-    public Comment(String text, LocalDateTime created_at){
+    public Comment(String text, LocalDateTime created_at, User user, Post post){
         if(text.isEmpty()) throw new IllegalArgumentException();
+        if(user == null) throw new IllegalArgumentException();
+        if(post == null) throw new IllegalArgumentException();
+        this.createdAt = created_at;
         this.text = text;
-        this.createdAt = createdAt;
+        this.user = user;
+        this.post = post;
     }
 
     public String getText() {
@@ -41,20 +46,20 @@ public class Comment {
         this.text = text;
     }
 
-    public long getUser_id() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public long getPost_id() {
-        return postId;
+    public Post getPost() {
+        return post;
     }
 
-    public void setPost_id(long postId) {
-        this.postId = postId;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public long getComment_id() {

@@ -1,9 +1,6 @@
 package com.social_network.practice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -21,14 +18,17 @@ public class Post {
     @Column(name="created_at")
     private LocalDateTime createdAt;
 
-    private long userId;
+    @ManyToOne
+    @JoinColumn(name = "fk_user_id")
+    private User user;
 
     public Post(){}
 
-    public Post(String content, LocalDateTime createdAt){
+    public Post(String content, LocalDateTime createdAt, User user){
         if(content.isEmpty()) throw new IllegalArgumentException();
         this.content = content;
         this.createdAt = createdAt;
+        this.user = user;
     }
 
     public String getContent() {
@@ -39,10 +39,6 @@ public class Post {
         this.content = content;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -51,7 +47,11 @@ public class Post {
         return postId;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
